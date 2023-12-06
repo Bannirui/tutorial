@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.25)
-
 project(adder)
 
 # 头文件目录
@@ -13,3 +11,8 @@ SHARED
 不指定库文件类型 默认是静态
 ]]
 add_library(${PROJECT_NAME} STATIC adder.c)
+
+# 库文件install到/usr/local/lib中
+install(TARGETS ${PROJECT_NAME} DESTINATION lib)
+# 头文件install到/usr/local/include中
+install(FILES include/adder.h DESTINATION include)

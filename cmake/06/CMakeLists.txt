@@ -87,3 +87,8 @@ target_link_libraries(${PROJECT_NAME}
         zlog
         ${extra_links}
 )
+
+# 可执行程序install到/usr/local/bin中
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+# 头文件install到/usr/local/include中
+install(FILES "${PROJECT_BINARY_DIR}/TestConfig.h" DESTINATION include)

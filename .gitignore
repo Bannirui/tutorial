@@ -66,5 +66,5 @@ _deps
 .vscode
 .idea
 lib
-out/build/
+out/
 [Bb][Uu][Ii][Ll][Dd]/
