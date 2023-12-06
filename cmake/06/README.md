@@ -11,3 +11,4 @@
 本节展涉及的cmake操作
 - git submodule更新管理
 - configure_file指令生成文件
+- option指令开关控制编译 通过cmake的-D传递宏定义

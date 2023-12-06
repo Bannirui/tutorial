@@ -1,3 +1,5 @@
 #!/bin/sh
 
-cmake -S . -B out/build
+cmake \
+-DUSE_ADDER=OFF \
+-S . -B out/build

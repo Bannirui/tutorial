@@ -3,3 +3,5 @@
 // main_VERSION_MINOR CMakeLists.txt中project()定义的项目minor版本号
 #define VERSION_MAJOR @main_VERSION_MAJOR@
 #define VERSION_MINOR @main_VERSION_MINOR@
+
+#cmakedefine USE_ADDER

@@ -3,6 +3,22 @@ cmake_minimum_required(VERSION 3.25)
 project(main VERSION 1.2)
 
 #[[
+开关控制adder模块
+-控制是否要编译模块
+-是否使用该模块编译出来的库
+]]
+option(USE_ADDER "A simple library for adding 2 integer." ON)
+if (USE_ADDER)
+    # 模块编译
+    add_subdirectory(Adder)
+    # 记录这个库的头文件目录 库文件目录 库文件名称
+    # 供下面指定扫描头文件路径 库文件路径和链接的库名称
+    list(APPEND extra_include_dirs "${PROJECT_SOURCE_DIR}/Adder/include")
+    list(APPEND extra_lib_dirs "${PROJECT_SOURCE_DIR}/Adder")
+    list(APPEND extra_links adder)
+endif ()
+
+#[[
 文件生成
 在.h.in文件中用@@包裹的占位符会用cmake中定义的变量填充
 上面project已经定义了项目名和版本号
@@ -42,18 +58,32 @@ endif ()
 ]]
 add_subdirectory(external/zlog)
 
-# 头文件目录
+#[[
+头文件目录
+-三方库
+-模块化的头文件
+]]
 target_include_directories(${PROJECT_NAME}
         PUBLIC external/zlog/src
+        ${extra_include_dirs}
 )
 
-# 库文件目录
+#[[
+库文件目录
+-三方库build/external/zlog/lib/libzlog.a
+-模块化的库文件目录
+]]
 target_link_directories(${PROJECT_NAME}
         PRIVATE external/zlog/lib
+        ${extra_lib_dirs}
 )
 
-# 链接库
-# libzlog.a
+#[[
+链接库的名字
+-三方库libzlog.a
+-模块化的库名称
+]]
 target_link_libraries(${PROJECT_NAME}
         zlog
+        ${extra_links}
 )
