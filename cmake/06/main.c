@@ -1,9 +1,11 @@
 #include <stdio.h>
 
 #include "zlog.h"
+#include <TestConfig.h>
 
 int main(int argc, char **argv)
 {
+  printf("hello world\nVersion %d.%d\n", VERSION_MAJOR, VERSION_MINOR);
   int rc;
   zlog_category_t *c;
 

@@ -1,0 +1,5 @@
+// main CMakeLists.txt中project()定义的项目名
+// main_VERSION_MAJOR CMakeLists.txt中project()定义的项目major版本号
+// main_VERSION_MINOR CMakeLists.txt中project()定义的项目minor版本号
+#define VERSION_MAJOR @main_VERSION_MAJOR@
+#define VERSION_MINOR @main_VERSION_MINOR@
