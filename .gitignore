@@ -51,8 +51,20 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
 .vscode
 .idea
-out
-build
 lib
+out/build/
+[Bb][Uu][Ii][Ll][Dd]/
