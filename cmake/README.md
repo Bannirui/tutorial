@@ -7,3 +7,4 @@ cmake
 - [install+链接库](./04)
 - [git submodule](./05)
 - [option指令](./06)
+- [cpack打包](./07)
