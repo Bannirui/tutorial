@@ -2,15 +2,26 @@ cmake_minimum_required(VERSION 3.25)
 
 project(main VERSION 1.2.4)
 
-#find_library(myglewlib
-#        NAMES glew2 GLEW GLEW2
-#        DOC "glew library")
-#
-#if (NOT ${myglewlib})
-#    message(FATAL_ERROR "no glew!")
-#else ()
-#    message(STATUS "glew founded, as ${myglewlib}")
-#endif ()
+#[[
+模拟lib的查找过程
+实际上当前项目的库并没有install
+所以即使find library没有结果也不影响后续的编译
+]]
+find_library(myzloglib
+        PATHS "/usr/local/lib"
+        NAMES zlog zlog.1
+        DOC "zlog library")
+
+if (${myzloglib} STREQUAL "myzloglib-NOTFOUND")
+    # 实际项目中找不到依赖库直接FATAL不要继续流程了
+    # message(FATAL_ERROR "no zlog!")
+    message(WARNING "no zlog!")
+else ()
+    list(APPEND extra_include_dirs "/usr/local/include")
+    list(APPEND extra_lib_dirs "/usr/local/lib")
+    list(APPEND extra_links ${myzloglib})
+    message(STATUS "zlog founded, as ${myzloglib}")
+endif ()
 
 #[[
 开关控制adder模块
@@ -70,7 +81,7 @@ add_subdirectory(external/zlog)
 
 #[[
 头文件目录
--三方库
+-三方库 源码目录/external/zlog/src
 -模块化的头文件
 ]]
 target_include_directories(${PROJECT_NAME}
