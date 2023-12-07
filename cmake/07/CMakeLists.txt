@@ -130,9 +130,9 @@ set(cpack_resource_file_license "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 include(CPack)
 
 # ctest
-option(TEST_FILE "test configure_file" ON)
-option(TEST_ADDER "test lib: adder" ON)
-option(TEST_ZLOG "test lib: zlog" ON)
+option(TEST_FILE "test configure_file" OFF)
+option(TEST_ADDER "test lib: adder" OFF)
+option(TEST_ZLOG "test lib: zlog" OFF)
 
 if (TEST_FILE)
     list(APPEND test_extra_include_dirs "${PROJECT_BINARY_DIR}")
@@ -155,5 +155,7 @@ if (TEST_ZLOG)
 endif ()
 
 if (TEST_FILE OR TEST_ADDER OR TEST_ZLOG)
+    # 在项目的toplevel开启ctest
+    enable_testing()
     add_subdirectory(tests)
 endif ()

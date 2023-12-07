@@ -27,6 +27,7 @@
 - 再谈install
 - cpack打包
 - find_library
+- ctest
 
 ### 2.1 cmake生成构建器
 
@@ -136,3 +137,24 @@ cpack是cmake内置功能，需要在CMakeLists.txt中通过`include(CPack)`指�
 - 运行.sh即可对压缩包进行解压
 
 但是因为我仍旧不习惯在`/usr/lib`全局库路径安装用户级别的库，所以当前示例项目的压缩包解压后运行还会提示缺少动态库。
+
+### 2.7 ctest
+
+使用`enable_testing()`指令开启CTest。
+
+```shell
+cmake \
+-DUSE_ADDER=OFF \
+-DTEST_FILE=ON \
+-DTEST_ADDER=ON \
+-DTEST_ZLOG=ON \
+-S . -B out/build
+
+cd out/build ; make
+
+cd out/build/tests
+
+ctest -N
+
+ctest -VV
+```
