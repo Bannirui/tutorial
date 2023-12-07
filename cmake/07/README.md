@@ -26,12 +26,14 @@
 - option指令开关控制编译 通过cmake的-D传递宏定义
 - 再谈install
 - cpack打包
+- find_library
 
 ### 2.1 cmake生成构建器
 
 ```shell
 cmake -S . -B build
 ```
+
 ### 2.2 使用make构建工具
 
 ```shell

@@ -2,6 +2,16 @@ cmake_minimum_required(VERSION 3.25)
 
 project(main VERSION 1.2.4)
 
+#find_library(myglewlib
+#        NAMES glew2 GLEW GLEW2
+#        DOC "glew library")
+#
+#if (NOT ${myglewlib})
+#    message(FATAL_ERROR "no glew!")
+#else ()
+#    message(STATUS "glew founded, as ${myglewlib}")
+#endif ()
+
 #[[
 开关控制adder模块
 -控制是否要编译模块
