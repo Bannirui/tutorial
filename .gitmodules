@@ -4,3 +4,6 @@
 [submodule "cmake/06/external/zlog"]
 	path = cmake/06/external/zlog
 	url = git@github.com:HardySimpson/zlog.git
+[submodule "cmake/07/external/zlog"]
+	path = cmake/07/external/zlog
+	url = git@github.com:HardySimpson/zlog.git

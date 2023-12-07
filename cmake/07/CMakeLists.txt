@@ -74,7 +74,7 @@ target_include_directories(${PROJECT_NAME}
 -模块化的库文件目录
 ]]
 target_link_directories(${PROJECT_NAME}
-        PRIVATE external/zlog/lib
+        PUBLIC external/zlog/lib
         ${extra_lib_dirs}
 )
 
