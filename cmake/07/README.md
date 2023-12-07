@@ -70,7 +70,39 @@ cd build ; make install
 
 - 首先在不同的平台上，不同的编译器实现可能默认的搜索路径并不相同，比如/usr/local/include可能在mac上不会被默认扫描，最终还是要手动添加头文件路径，也就失去了一半的install意义
 - 其次在git submodule管理大量的子模块时候，恰好子模块也是通过cmake管理的，恰好也支持install指令，那么将会有比较多的文件被复制到/usr/local下的bin lib或者include文件夹 我不太喜欢这样的不可控的预期
+- ld /usr/lib
 - 那么当有的时候需要在环境变量中执行程序怎么办，要么手动复制到/usr/local对应目录下，要么将可执行程序对应路径export到全局环境变量中
+
+#### 2.5.1
+
+```shell
+❯ ldd main
+        linux-vdso.so.1 (0x00007f2cda4fa000)
+        libzlog.so.1 => not found
+        libc.so.6 => /usr/lib/libc.so.6 (0x00007f2cda200000)
+        /lib64/ld-linux-x86-64.so.2 => /usr/lib64/ld-linux-x86-64.so.2 (0x00007f2cda4fc000)
+
+```
+
+#### 2.5.2
+
+```shell
+cp /usr/local/lib/libzlog.so.1 /usr/lib/
+```
+
+#### 2.5.3
+
+```shell
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+```
+
+#### 2.5.4
+
+.zshrc
+```shell
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+```
+```
 
 ### 2.6 cpack指令
 
