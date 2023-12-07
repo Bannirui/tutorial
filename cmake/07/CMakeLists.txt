@@ -70,6 +70,7 @@ target_include_directories(${PROJECT_NAME}
 
 #[[
 库文件目录
+用PUBLIC开放依赖的传递性
 -三方库build/external/zlog/lib/libzlog.a
 -模块化的库文件目录
 ]]
