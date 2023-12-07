@@ -68,12 +68,13 @@ cd build ; make install
 
 我个人还是不习惯于使用install
 
-- 首先在不同的平台上，不同的编译器实现可能默认的搜索路径并不相同，比如/usr/local/include可能在mac上不会被默认扫描，最终还是要手动添加头文件路径，也就失去了一半的install意义
+- 首先在不同的平台上，不同的编译器实现可能默认的搜索路径并不相同，比如/usr/local/include可能在不会被默认扫描，最终还是要手动添加头文件路径到CMakeLists文件，也就失去了一半的install意义
 - 其次在git submodule管理大量的子模块时候，恰好子模块也是通过cmake管理的，恰好也支持install指令，那么将会有比较多的文件被复制到/usr/local下的bin lib或者include文件夹 我不太喜欢这样的不可控的预期
-- ld /usr/lib
-- 那么当有的时候需要在环境变量中执行程序怎么办，要么手动复制到/usr/local对应目录下，要么将可执行程序对应路径export到全局环境变量中
+- 默认情况下习惯性将库install到/usr/local/lib中，但是系统默认的依赖库路径在/usr/lib中，这样就会导致可执行程序找不到动态库
 
-#### 2.5.1
+比如上述原因，我们编译好的程序运行不了怎么处理
+
+#### 2.5.1 首先分析程序链接不到哪个库
 
 ```shell
 ❯ ldd main
@@ -84,24 +85,38 @@ cd build ; make install
 
 ```
 
-#### 2.5.2
+main程序链接不到`zlog.so.1`这个动态库，但是这个库在`make install`的时候已经安装到了`/usr/local/lib`下，说明系统默认的库依赖路径并不包含`/usr/local/lib`这个路径。
+
+#### 2.5.2 将库放到/usr/lib中
+
+`/usr/lib`是系统的默认依赖库路径，将动态库放到这个路径下，main程序便能够成功链接到该库。
 
 ```shell
 cp /usr/local/lib/libzlog.so.1 /usr/lib/
 ```
 
-#### 2.5.3
+#### 2.5.3 将/usr/local/lib暴露给库依赖路径
+
+修改LD_LIBRARY_PATH环境变量，这个时候可以有临时和永久两种方式
+
+- 在终端的一次会话生命周期内修改环境
+- 添加到全局环境变量中
+
+##### 2.5.3.1 终端会话修改环境变量
 
 ```shell
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 ```
 
-#### 2.5.4
+##### 2.5.3.2 修改全局环境变量
 
-.zshrc
 ```shell
+vim ~/.zshrc
+
+将下面这行添加到文件中
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-```
+
+source ~/.zshrc
 ```
 
 ### 2.6 cpack指令
@@ -118,5 +133,4 @@ cpack是cmake内置功能，需要在CMakeLists.txt中通过`include(CPack)`指�
 - 之后在build文件夹下生成.sh和压缩包
 - 运行.sh即可对压缩包进行解压
 
-但是我使用的三方库zlog，项目对其有动态库依赖，运行程序的时候报错找不到动态库。
-我还不知道如何正确打包这种依赖的动态库，比较简单的方法是将动态库放到/usr/lib中可以让程序运行起来，但这种方法不免有点笨拙。
+但是因为我仍旧不习惯在`/usr/lib`全局库路径安装用户级别的库，所以当前示例项目的压缩包解压后运行还会提示缺少动态库。
