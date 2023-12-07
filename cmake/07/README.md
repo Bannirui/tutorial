@@ -18,13 +18,40 @@
 2 本节展涉及的cmake操作
 ---
 
+- cmake生成构建器
+- 构建工具编译项目
+- 运行程序
 - 使用cmake托管`git submodule`的更新工作
 - configure_file指令生成文件
 - option指令开关控制编译 通过cmake的-D传递宏定义
 - 再谈install
 - cpack打包
 
-### 2.1 关于git的子模块
+### 2.1 cmake生成构建器
+
+```shell
+cmake -S . -B build
+```
+### 2.2 使用make构建工具
+
+```shell
+cd build
+make
+```
+
+### 2.3 运行可执行程序
+
+```shell
+cd build
+./out
+```
+
+### 2.4 关于git的子模块
+
+```shell
+git submodule add ${remote-repo-url} ${local-repo-name}
+git submodule update --init --recursive 
+```
 
 我当前项目的规划并不是真实项目结构，因此cmake不会执行git子模块的更新操作
 
@@ -32,7 +59,12 @@
 - 在项目根目录下创建CMakeLists.txt文件，即cmake从项目根目录开始管理
 - .gitmodules文件也维护在项目根目录下
 
-### 2.2 关于install
+### 2.5 关于install
+
+```shell
+cmake -S . -B build
+cd build ; make install
+```
 
 我个人还是不习惯于使用install
 
@@ -40,7 +72,12 @@
 - 其次在git submodule管理大量的子模块时候，恰好子模块也是通过cmake管理的，恰好也支持install指令，那么将会有比较多的文件被复制到/usr/local下的bin lib或者include文件夹 我不太喜欢这样的不可控的预期
 - 那么当有的时候需要在环境变量中执行程序怎么办，要么手动复制到/usr/local对应目录下，要么将可执行程序对应路径export到全局环境变量中
 
-### 2.3 cpack指令
+### 2.6 cpack指令
+
+```shell
+cmake -S . -B build
+cd build; cpack
+```
 
 cpack是cmake内置功能，需要在CMakeLists.txt中通过`include(CPack)`指令显式开启，并指定相关配置。
 
