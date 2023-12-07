@@ -35,7 +35,7 @@ if (USE_ADDER)
     # 记录这个库的头文件目录 库文件目录 库文件名称
     # 供下面指定扫描头文件路径 库文件路径和链接的库名称
     list(APPEND extra_include_dirs "${PROJECT_SOURCE_DIR}/Adder/include")
-    list(APPEND extra_lib_dirs "${PROJECT_SOURCE_DIR}/Adder")
+    list(APPEND extra_lib_dirs "${CMAKE_CURRENT_BINARY_DIR}/Adder")
     list(APPEND extra_links adder)
 endif ()
 
@@ -128,3 +128,32 @@ include(InstallRequiredSystemLibraries)
 set(cpack_resource_file_license "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 # cpack是cmake内置功能 include(CPack)启用该功能
 include(CPack)
+
+# ctest
+option(TEST_FILE "test configure_file" ON)
+option(TEST_ADDER "test lib: adder" ON)
+option(TEST_ZLOG "test lib: zlog" ON)
+
+if (TEST_FILE)
+    list(APPEND test_extra_include_dirs "${PROJECT_BINARY_DIR}")
+endif ()
+#[[
+因为上面模拟了一个开关USE_ADDER
+此时需要一个开关TEST_ADDER
+二者一定不能同时为TRUE 否则会导致Adder被两次add_subdirectory 会报错
+]]
+if (TEST_ADDER)
+    add_subdirectory(Adder)
+    list(APPEND test_extra_include_dirs "${PROJECT_SOURCE_DIR}/Adder/include")
+    list(APPEND test_extra_lib_dirs "${CMAKE_CURRENT_BINARY_DIR}/Adder")
+    list(APPEND test_extra_links adder)
+endif ()
+if (TEST_ZLOG)
+    list(APPEND test_extra_include_dirs "${CMAKE_CURRENT_SOURCE_DIR}/external/zlog/src")
+    list(APPEND test_extra_lib_dirs "${CMAKE_CURRENT_BINARY_DIR}/external/zlog/lib")
+    list(APPEND test_extra_links zlog)
+endif ()
+
+if (TEST_FILE OR TEST_ADDER OR TEST_ZLOG)
+    add_subdirectory(tests)
+endif ()

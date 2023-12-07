@@ -8,3 +8,4 @@ cmake
 - [git submodule](./05)
 - [option指令](./06)
 - [cpack打包](./07)
+- [ctest](./07)
