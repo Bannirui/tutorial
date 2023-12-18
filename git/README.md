@@ -19,7 +19,7 @@ git教程
 
 - `git log --graph --pretty=oneline --abbrev-commit` 简化提交信息
 
-- `commit -am '提交注释'` 合并add和commit两步
+- `git commit -am '提交注释'` 合并add和commit两步
 
 - 版本穿梭
 
@@ -94,3 +94,121 @@ git教程
   - `git diff --cached sha1值`比较对象区和暂存区
 
   - `git diff --cached HEAD`比较最新的对象区和暂存区
+
+- `git push -u origin master` 首次推送，之后`git push`即可
+
+- `git remote show` 查看远程分布式服务器列表
+
+- `git remote show origin` 查看远程分支
+
+- `git branch -av` 本地远程分支的commit对比
+
+- `git clone repo地址 自定义项目名`或者`git clone repo地址`
+
+- pull = fetch + merge
+
+- `git log origin/master`或者`git log refs/remotes/origin/master` 查看远端master
+
+- 分支关联
+
+  - 本地有分支 远程没有分支
+  
+    - git push -u origin 分支名
+
+    - git push --set-upstream origin 分支名
+
+  - 本地没有分支 远程有分支
+
+    - `git pull`将远程分支更新到追踪分支，然后追踪分支更新到本地分支
+
+      - `git checkout -b 分支名 origin/分支名`
+
+      - `git checkout -b --track origin/分支名`
+  
+    - `git pull origin 远程分支名:本地分支名`
+
+- 删除远程分支
+
+  - `git push origin :远程分支名`
+
+  - `git push origin --delete 分支名`
+
+- 删除没有用处的追踪分支
+
+  - `git remote prune origin --dry-run`检测没有使用的追踪分支
+
+  - `git remote prune origin`清理无效的追踪分支
+
+- `git push origin --tags`将标签推送远程
+
+- `git fetch origin tag 远程标签名`
+
+- `git push origin :refs/tags/远程标签名`删除远程标签
+
+- submodule
+
+  - `git submodule add repo地址`
+
+  - pull
+
+    - 进入到子模块目录执行`git pull`
+
+    - 所有子模块迭代pull`git submodule foreach git pull`
+
+  - `git clone repo地址 --recursive`
+
+  - 删除
+
+    - `git rm --cached 模块名`删除暂存区
+
+    - 删除工作区
+
+      - `rm -rf 模块名`
+
+      - `rm -rf .gitmodules`
+
+    - 删除对象区
+
+      - `git -am '删除对象区'`
+
+      - `git push`
+
+- submodule是单向操作
+
+- subtree是双向操作
+
+- subtree
+
+  - `git remote add subtree-origin repo地址`远程地址别名
+
+  - 远程master分支加到工程`git subtree add -P 本地subtree名 subree-origin master`
+
+  - 更新`git subtree pull -P 子模块 subtree-origin master`
+
+  - 在父工程子模块修改推送到子工程`git subtree push -P subtree-origin master`
+
+- cherry-pick使用场景是转移分支的提交
+
+  - `git checkout 分支`切到目标分支
+
+  - `git cherry-pick sha1值`将commit提交复制过来
+
+- 变基(衍合)
+
+  - rebase会改变历史提交线
+
+  - rebase之后的提交线路是一条直线
+
+  - 冲突
+
+    - 解决冲突后提交`git add .`, 继续rebase`git rebase --continue`
+
+    - 忽略冲突`git rebase --skip`
+
+  - 终止rebase，还原rebase之前的场景`git rebase --abort`
+
+  - 最好只在本地分支rebase
+
+  - 不要在master分支上rebase
+
+  - 在dev分支上`git rebase master`
