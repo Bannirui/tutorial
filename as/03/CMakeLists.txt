@@ -34,9 +34,9 @@ add_custom_target(
 )
 
 # 反汇编
+# 不需要加到ALL中 默认不需要执行 有需要的时候到构建目录下执行make dump
 add_custom_target(
     dump
-    ALL
     COMMAND objdump -d -m i8086 ${CMAKE_CURRENT_BINARY_DIR}/hello.elf
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     DEPENDS ld
