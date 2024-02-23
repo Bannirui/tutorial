@@ -6,12 +6,13 @@ start:
     mov $0, %esi
     mov $0, %ax
 
-l:
+1:
     add (%ebx, %esi, 2), %ax
 
     add $1, %esi
     cmp $5, %esi
-    jb l
+    # 向后跳转到标签1
+    jb 1b
     hlt
 
 var:
