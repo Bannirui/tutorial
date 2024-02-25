@@ -171,6 +171,14 @@ linux中负责汇编的工具为as，负责链接的工具为ld
 
 - objcopy 操作目标文件，将ELF文件中的代码和数据部分复制出来，这个没有任何格式的文件称为binary文件 `objcopy -O binary hello.elf hello.bin`
 
+- readelf 工具readelf查看目标文件
+
+  - `readelf -S hello.o`
+
+  - `readelf -S sum.o`
+
+  - `readelf -S hello.elf`
+
 ### 5 示例
 
 - [01 屏幕输出字符A](./01)
