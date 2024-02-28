@@ -68,3 +68,9 @@ _deps
 lib
 out/
 [Bb][Uu][Ii][Ll][Dd]/
+
+# bochs制作软盘临时目录
+[Tt][Mm][Pp]/
+
+# bochs的日志
+*.log
