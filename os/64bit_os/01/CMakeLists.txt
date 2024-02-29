@@ -30,7 +30,7 @@ add_custom_target(
     COMMAND gcc -c ${CMAKE_CURRENT_SOURCE_DIR}/boot16.S -o boot.o
     COMMAND gcc -c ${CMAKE_CURRENT_SOURCE_DIR}/clear_screen16.S -o clear_screen.o
     COMMAND gcc -c ${CMAKE_CURRENT_SOURCE_DIR}/set_focus16.S -o set_focus.o
-    COMMAND gcc -c ${CMAKE_CURRENT_SOURCE_DIR}/display_Start_Boot16.S -o display_Start_Boot.o
+    COMMAND gcc -c ${CMAKE_CURRENT_SOURCE_DIR}/print_msg16.S -o print_msg.o
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMENT "汇编"
 )
@@ -39,7 +39,9 @@ add_custom_target(
 add_custom_target(
     ld
     ALL
-    COMMAND ld -Ttext=0x0 ${CMAKE_CURRENT_BINARY_DIR}/boot.o ${CMAKE_CURRENT_BINARY_DIR}/clear_screen.o ${CMAKE_CURRENT_BINARY_DIR}/set_focus.o ${CMAKE_CURRENT_BINARY_DIR}/display_Start_Boot.o -o boot.elf
+    # 软盘第一扇区为引导区 CS=0 IP=0x7c0 处理去取址地址=CS<<4+IP=0x7c00 把代码指定到这个位置
+    #COMMAND ld -Ttext=0x7c00 ${CMAKE_CURRENT_BINARY_DIR}/boot.o ${CMAKE_CURRENT_BINARY_DIR}/clear_screen.o ${CMAKE_CURRENT_BINARY_DIR}/set_focus.o ${CMAKE_CURRENT_BINARY_DIR}/display_Start_Boot.o -o boot.elf
+    COMMAND ld -Ttext=0x7c00 ${CMAKE_CURRENT_BINARY_DIR}/boot.o -o boot.elf
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     DEPENDS as
     COMMENT "链接"
