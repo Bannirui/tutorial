@@ -40,7 +40,7 @@ add_custom_target(
     ld
     ALL
     # 软盘第一扇区为引导区 CS=0 IP=0x7c0 处理去取址地址=CS<<4+IP=0x7c00 把代码指定到这个位置
-    COMMAND ld -Ttext=0
+    COMMAND ld -Ttext=0x7c00
         ${CMAKE_CURRENT_BINARY_DIR}/boot.o 
         -o boot.elf
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
