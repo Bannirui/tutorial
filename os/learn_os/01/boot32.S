@@ -1,11 +1,11 @@
 // 32位保护模式
-
-.text
+.section .text
 .code32
 
-start32:
+.global _start
+_start:
     mov $0x3f8, %dx
-    mov $'P', %al
+    mov $'A', %al
     out %al, %dx
 
 loop:
