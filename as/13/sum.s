@@ -1,7 +1,9 @@
-.text
+.section .text
 .code16
 .global sum
 
+# 定义函数
+.type sum, @function
 sum:
     # 此时栈帧里面已经放了call指令放进去的函数返回地址
     # 又手动push了主调函数的栈帧基址

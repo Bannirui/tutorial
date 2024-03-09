@@ -1,7 +1,8 @@
-.text
+.section .text
 .code16
 
-start:
+.global _start
+_start:
     mov $stack, %sp
     call sum
     hlt
