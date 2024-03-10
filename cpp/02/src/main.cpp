@@ -2,12 +2,11 @@
 
 #define INTEGER int
 
-// 函数声明
-void Log(const char *msg);
+int Multiply(int a, int b);
 
 INTEGER main()
 {
-    Log("Hello World");
+    Multiply(2, 3);
     std::cin.get();
     return 0;
-#include "endBrace.h"
+}
