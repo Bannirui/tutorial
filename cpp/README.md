@@ -36,3 +36,5 @@ cpp
 - [14 constructors in c++](./14/README.md)
 
 - [15 destructors in c++](./15/README.md)
+
+- [16 Inheritance in c++](./16/README.md)
