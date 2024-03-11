@@ -28,3 +28,5 @@ cpp
 - [10 Write a C++ Class](./10/README.md)
 
 - [11 static修饰变量和函数](./11/README.md)
+
+- [12 static修饰成员变量](./12/README.md)
