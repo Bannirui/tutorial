@@ -50,3 +50,5 @@ cpp
 - [21 const](./21/README.md)
 
 - [22 member initializer lists](./22/README.md)
+
+- [23 instantiate object](./23/README.md)
