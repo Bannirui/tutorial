@@ -52,3 +52,5 @@ cpp
 - [22 member initializer lists](./22/README.md)
 
 - [23 instantiate object](./23/README.md)
+
+- [24 the new keyword](./24/README.md)
