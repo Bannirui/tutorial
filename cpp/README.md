@@ -54,3 +54,5 @@ cpp
 - [23 instantiate object](./23/README.md)
 
 - [24 the new keyword](./24/README.md)
+
+- [25 Explicit keyword](./25/README.md)
