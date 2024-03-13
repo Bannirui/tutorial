@@ -56,3 +56,5 @@ cpp
 - [24 the new keyword](./24/README.md)
 
 - [25 Explicit keyword](./25/README.md)
+
+- [26 operator](./26/README.md)
