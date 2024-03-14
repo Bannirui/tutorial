@@ -6,17 +6,15 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror")
 
-# 源码
-file(GLOB src_files src/*.cpp)
+file(GLOB src_files src/*.cpp) # 源码
 
 add_executable(${PROJECT_NAME}
         ${src_files}
-        external/glad/src/glad.c # glad的源文件加到项目中
+        external/glad/src/glad.c # add `glad.c` to my project
 )
 
-# 编译GLFW源码
-add_subdirectory(external/glfw)
-find_package(OpenGL REQUIRED)
+add_subdirectory(external/glfw) # 编译GLFW源码
+find_package(OpenGL REQUIRED) # libGL.so
 
 # 头文件目录
 target_include_directories(${PROJECT_NAME}
@@ -24,8 +22,15 @@ target_include_directories(${PROJECT_NAME}
         PUBLIC external/glfw/include # glfw
 )
 
-# 库文件目录
-#target_link_directories(${PROJECT_NAME})
+set(sys_libs "-lglfw3 -lGL -lX11 -lpthread -lXrandr -lXi -ldl") # 依赖的系统库
 
-target_link_libraries(${PROJECT_NAME} glfw)
-target_link_libraries(${PROJECT_NAME} OpenGL::GL)
+# 库文件目录
+target_link_directories(${PROJECT_NAME}
+        PUBLIC ${CMAKE_BINARY_DIR}/external/glfw/src # libglfw3.a
+)
+
+target_link_libraries(${PROJECT_NAME}
+        glfw # 链接库libglfw3.a
+        OpenGL::GL # 链接库libGL.so
+        ${sys_libs} # 系统库
+)

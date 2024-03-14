@@ -1,6 +1,6 @@
 #include <iostream>
 
-// glad在glfw之前
+// glad在glfw之前 因为glfw依赖glad头文件中的部分内容
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -8,7 +8,9 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
 int main(int argc, char **argv)
 {
+  // 初始化glfw
   glfwInit();
+  // 配置glfw
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
