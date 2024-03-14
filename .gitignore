@@ -76,3 +76,5 @@ out/
 
 # bochs的日志
 *.log
+
+*.DS_Store

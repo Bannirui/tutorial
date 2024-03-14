@@ -22,8 +22,6 @@ target_include_directories(${PROJECT_NAME}
         PUBLIC external/glfw/include # glfw
 )
 
-set(sys_libs "-lglfw3 -lGL -lX11 -lpthread -lXrandr -lXi -ldl") # 依赖的系统库
-
 # 库文件目录
 target_link_directories(${PROJECT_NAME}
         PUBLIC ${CMAKE_BINARY_DIR}/external/glfw/src # libglfw3.a
@@ -34,3 +32,10 @@ target_link_libraries(${PROJECT_NAME}
         OpenGL::GL # 链接库libGL.so
         ${sys_libs} # 系统库
 )
+
+if (LINUX)
+    set(sys_libs "-lglfw3 -lGL -lX11 -lpthread -lXrandr -lXi -ldl") # 依赖的系统库
+    target_link_libraries(${PROJECT_NAME}
+            ${sys_libs} # 系统库
+    )
+endif ()
