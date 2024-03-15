@@ -60,3 +60,5 @@ cpp
 - [26 operator](./26/README.md)
 
 - [27 this keyword](./27/README.md)
+
+- [28 dynamic array, vector](./28/README.md)
