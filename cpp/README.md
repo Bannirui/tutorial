@@ -62,3 +62,5 @@ cpp
 - [27 this keyword](./27/README.md)
 
 - [28 dynamic array, vector](./28/README.md)
+
+- [29 static](./29/README.md)
