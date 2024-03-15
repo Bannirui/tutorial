@@ -64,3 +64,5 @@ cpp
 - [28 dynamic array, vector](./28/README.md)
 
 - [29 static](./29/README.md)
+
+- [30 template](./30/README.md)
