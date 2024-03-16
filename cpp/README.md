@@ -76,3 +76,5 @@ cpp
 - [34 sort](./34/README.md)
 
 - [35 union](./35/README.md)
+
+- [36 virtual destructor](./36/README.md)
