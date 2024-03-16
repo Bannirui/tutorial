@@ -72,3 +72,5 @@ cpp
 - [32 lambda](./32/README.md)
 
 - [33 multidimensional array](./33/README.md)
+
+- [34 sort](./34/README.md)
