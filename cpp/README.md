@@ -70,3 +70,5 @@ cpp
 - [31 function pointer](./31/README.md)
 
 - [32 lambda](./32/README.md)
+
+- [33 multidimensional array](./33/README.md)
