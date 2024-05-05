@@ -7,6 +7,8 @@ OpenGL
 
 [参看官网文档](https://www.glfw.org/docs/latest/compile.html)
 
+![](./img/1714870408.png)
+
 ```shell
 cd ~/MyDev/env/glfw
 
