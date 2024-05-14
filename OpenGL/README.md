@@ -66,6 +66,10 @@ chmod +x ./build.sh
 
 我的习惯是如果项目依赖三方库，我会用git统一管理到源码中
 
-### 2 OpenGL开发
+### 2 [Learn OpenGL](https://learnopengl.com/)
 
-示例代码在直接以[my-opengl项目为例](./my-opengl/)
+### 3 OpenGL开发
+
+[learn-opengl网站教程](https://learnopengl.com/Getting-started/Creating-a-window)
+
+- [X] [01 build GLFW](demo/01/README.md)
