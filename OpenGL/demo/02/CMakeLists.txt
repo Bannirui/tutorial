@@ -6,10 +6,11 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror")
 
-file(GLOB src_files src/*.cpp) # 源码
+# 源码
+aux_source_directory(src srcs)
 
 add_executable(${PROJECT_NAME}
-        ${src_files}
+        ${srcs}
         external/glad/src/glad.c # add `glad.c` to my project
 )
 
