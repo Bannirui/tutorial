@@ -73,3 +73,9 @@ chmod +x ./build.sh
 [learn-opengl网站教程](https://learnopengl.com/Getting-started/Creating-a-window)
 
 - [X] [01 build GLFW](demo/01/README.md)
+
+- [X] [02 window](demo/02/README.md)
+
+- [X] [03 triangle](demo/03/README.md)
+
+- [ ] [04 rectangle](demo/04/README.md)
