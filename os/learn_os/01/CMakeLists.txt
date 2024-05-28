@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28.0)
+cmake_minimum_required(VERSION 3.25.0)
 project(learn_os)
 
 # 可执行程序
@@ -13,7 +13,6 @@ add_custom_target(
     ALL
     COMMAND gcc -c ${CMAKE_CURRENT_SOURCE_DIR}/boot16.S -o boot16.o
     COMMAND gcc -c ${CMAKE_CURRENT_SOURCE_DIR}/boot32.S -o boot32.o
-    COMMAND gcc -c ${CMAKE_CURRENT_SOURCE_DIR}/boot64.S -o boot64.o
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMENT "汇编"
 )
@@ -24,7 +23,6 @@ add_custom_target(
     ALL
     COMMAND ld -Ttext=0x0 ${CMAKE_CURRENT_BINARY_DIR}/boot16.o -o boot16.elf
     COMMAND ld -Ttext=0x20000 ${CMAKE_CURRENT_BINARY_DIR}/boot32.o -o boot32.elf
-    COMMAND ld -Ttext=0x100000 ${CMAKE_CURRENT_BINARY_DIR}/boot64.o -o boot64.elf
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     DEPENDS as
     COMMENT "链接"
@@ -36,7 +34,6 @@ add_custom_target(
     ALL
     COMMAND objcopy -O binary boot16.elf boot16.bin
     COMMAND objcopy -O binary boot32.elf boot32.bin
-    COMMAND objcopy -O binary boot64.elf boot64.bin
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     DEPENDS ld
     COMMENT "bin可执行文件"
