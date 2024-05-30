@@ -1,3 +1,4 @@
+# 数据段
 .section .data
 
 # 创建保护模式的段描述符表
@@ -23,7 +24,20 @@ gdtr:
     # 高16位
     .word 0x01
 
+# e820map
+.org 0x3000
+  e820_nr_entry:
+    .long 0
+  e820_entry:
+    .fill 512, 1, 0
+
+# vesa mode info
+.org 0x4000
+  vesa_mode_info:
+    .fill 256, 1, 0
+
 // 16位实模式
+# 代码段
 .section .text
 .code16
 
@@ -34,20 +48,55 @@ gdtr:
 
 .global _start
 _start:
-    # 关闭中断
-    cli
+  # 关闭中断
+  cli
 
-    # x86处理器提供了专用指令ldgt从内存中加载段描述符表地址到寄存器GDTR
-    # 47          16 15           0
-    # [段描述符地址][段描述符表长度]
-    lgdt gdtr
+  # read e820
+  mov $e820_entry, %di
+  # 设置ebx为0
+  xor %ebx, %ebx
 
-    # 准备好段描述符表之后就可以开启保护模式了 处理器中控制寄存器CR0第0位PE用于控制处理器是否开启保护模式
-    mov %cr0, %eax
-    or $0x1, %eax
-    mov %eax, %cr0
+e820_rd_entry:
+  mov $0xe820, %eax
+  mov $20, %ecx
+  int $0x15
 
-    # ljmpl接收2个操作数
-    # 第一个操作数是段选择子 0000000000001 0 00
-    # 第二个操作数是段内偏移地址 保护模式的入口地址是0x20000 段基址是0 所以段内偏移是x020000
-    ljmpl $0x8, $0x20000
+  add $20, %di
+  incb e820_nr_entry
+
+  cmp $0, %ebx
+  jne e820_rd_entry
+
+  # get display mode info
+  mov $vesa_mode_info, %di
+  mov $0x4f01, %ax
+  int $0x10
+
+  # Init 8259A
+  # ICW1
+  mov $0x13, %al
+  mov $(IO_PIC), %dx
+  out %al, %dx
+  # ICW2
+  mov $(IRQ_OFFSET), %al
+  mov $(IO_PIC+1), %dx
+  out %al, %dx
+  # ICW4
+  mov $0x1, %al
+  mov $(IO_PIC+1), %dx
+  out %al, %dx
+
+  # x86处理器提供了专用指令ldgt从内存中加载段描述符表地址到寄存器GDTR
+  # 47          16 15           0
+  # [段描述符地址][段描述符表长度]
+  lgdt gdtr
+
+  # 准备好段描述符表之后就可以开启保护模式了 处理器中控制寄存器CR0第0位PE用于控制处理器是否开启保护模式
+  mov %cr0, %eax
+  or $0x1, %eax
+  mov %eax, %cr0
+
+  # ljmpl接收2个操作数
+  # 第一个操作数是段选择子 0000000000001 0 00
+  # 第二个操作数是段内偏移地址 保护模式的入口地址是0x20000 段基址是0 所以段内偏移是x020000
+  ljmpl $0x8, $0x20000
