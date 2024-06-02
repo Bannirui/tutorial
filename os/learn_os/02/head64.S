@@ -1,10 +1,13 @@
 // 64位模式
 
+#include "include/segment.h"
+
 .section .text
 .code64
 
 .global _start
 .global gdt
+# 0号任务
 .global ret_from_kernel
 .global task0_stack
 .global idle_task_entry
@@ -22,9 +25,15 @@ _start:
   mov %ax, %ss
 
   # setup stack
-  mov %task0_stack, %rsp
+  mov $task0_stack, %rsp
 
+  # push指令支持符号位扩展
+  # push $main 语义是压栈符号main的地址
+  # push main 语义是将内存地址main处的内容压栈
+  # 64位模式下push的操作数宽度是64位 当压栈的源操作数是32位时 push指令会用符号位填充压栈的64位中的高32位
   push $main
+  # 执行ret指令时 64位地址会被弹出到RIP指令寄存器中
+  # 通过push和ret巧妙结合可以将符号位置1
   ret
 
 gdt:

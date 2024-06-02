@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.25.0)
 project(learn_os)
 
-# 可执行程序
+# 可执行程序 用来组装映像
 add_executable(buildup buildup.c)
 
 # 启用汇编语言支持
