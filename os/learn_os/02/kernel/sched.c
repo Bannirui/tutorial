@@ -1,6 +1,6 @@
 #include "include/mm.h"
 #include "include/sched.h"
-#include "include/string"
+#include "include/string.h"
 #include "include/segment.h"
 #include "include/print.h"
 #include "include/tss.h"

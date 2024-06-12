@@ -1,6 +1,6 @@
 #pragma once
 
-#include "include/types.h"
+#include "types.h"
 
 struct vesa_mode_info
 {

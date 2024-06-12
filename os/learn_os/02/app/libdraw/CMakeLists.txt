@@ -2,23 +2,20 @@ cmake_minimum_required(VERSION 3.25.0)
 
 # 编译
 add_custom_target(
-    compile
+    libdraw_compile
     ALL
-    COMMAND gcc -I. -c ${CMAKE_CURRENT_SOURCE_DIR}/draw.c -o draw.o
-    COMMAND gcc -I. -c ${CMAKE_CURRENT_SOURCE_DIR}/fonts.c -o fonts.o
+    COMMAND gcc ${my_cflags} -c ${CMAKE_CURRENT_SOURCE_DIR}/draw.c -o draw.o
+    COMMAND gcc ${my_cflags} -c ${CMAKE_CURRENT_SOURCE_DIR}/fonts.c -o fonts.o
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMENT "汇编"
 )
 
 # 链接
 add_custom_target(
-    ld
+    libdraw_ld
     ALL
-    COMMAND ld -r \
-    ${CMAKE_CURRENT_BINARY_DIR}/draw.o \
-    ${CMAKE_CURRENT_BINARY_DIR}/fonts.o \
-    -o libdraw.o
+    COMMAND ld -r ${CMAKE_CURRENT_BINARY_DIR}/draw.o ${CMAKE_CURRENT_BINARY_DIR}/fonts.o -o libdraw.o
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    DEPENDS as
+    DEPENDS libdraw_compile
     COMMENT "链接"
 )

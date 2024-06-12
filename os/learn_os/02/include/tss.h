@@ -1,10 +1,10 @@
 #pragma once
 
-#include "include/types.h"
+#include "types.h"
 
 #define IO_BITMAP_BYTES (65536/8)
 
-struct
+struct tss
 {
     uint32_t reserved1;
     uint64_t rsp0;
