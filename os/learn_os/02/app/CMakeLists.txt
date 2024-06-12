@@ -8,7 +8,7 @@ enable_language(ASM)
 # 汇编
 add_custom_target(
     app_compile
-    ALL
+        buildup
     COMMAND gcc ${my_cflags} -c ${CMAKE_CURRENT_SOURCE_DIR}/app1.c -o app1.o
     COMMAND gcc ${my_cflags} -c ${CMAKE_CURRENT_SOURCE_DIR}/app2.c -o app2.o
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
@@ -18,7 +18,7 @@ add_custom_target(
 # 链接
 add_custom_target(
     app_ld
-    ALL
+        buildup
     COMMAND ld -Ttext=0x100000 ${CMAKE_CURRENT_BINARY_DIR}/app1.o ${CMAKE_CURRENT_BINARY_DIR}/app/libc/start.o ${CMAKE_CURRENT_BINARY_DIR}/app/libc/libc.o ${CMAKE_CURRENT_BINARY_DIR}/app/libdraw/libdraw.o -o app1.elf
     COMMAND ld -Ttext=0x100000 ${CMAKE_CURRENT_BINARY_DIR}/app2.o ${CMAKE_CURRENT_BINARY_DIR}/app/libc/start.o ${CMAKE_CURRENT_BINARY_DIR}/app/libc/libc.o ${CMAKE_CURRENT_BINARY_DIR}/app/libdraw/libdraw.o -o app2.elf
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
@@ -29,7 +29,7 @@ add_custom_target(
 # binary可执行文件
 add_custom_target(
     app_copy
-    ALL
+        buildup
     COMMAND objcopy -O binary app1.elf app1.bin
     COMMAND objcopy -O binary app2.elf app2.bin
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}

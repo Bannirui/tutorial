@@ -2,7 +2,7 @@
 
 #include "include/segment.h"
 
-.section .text
+.text
 .code64
 
 .global _start

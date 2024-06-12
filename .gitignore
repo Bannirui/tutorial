@@ -65,7 +65,6 @@ _deps
 
 .vscode
 .idea
-lib
 out/
 
 # 构建目录

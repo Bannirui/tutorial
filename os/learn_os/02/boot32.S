@@ -1,10 +1,10 @@
 // 32位保护模式
 # 数据段
-.section .data
+.data
 
 
 # 代码段
-.section .text
+.text
 .code32
 .global _start
 

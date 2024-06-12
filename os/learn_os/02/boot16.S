@@ -1,13 +1,13 @@
 // 16位实模式
 
 # 数据段
-.section .data
+.data
 
 #define IO_PIC     0x20
 #define IRQ_OFFSET 32
 
 # 代码段
-.section .text
+.text
 .code16
 
 // 1 创建保护模式的段描述符文表
