@@ -1,13 +1,13 @@
 // 16位实模式
 
 # 数据段
-.data
+.section .data
 
 #define IO_PIC     0x20
 #define IRQ_OFFSET 32
 
 # 代码段
-.text
+.section .text
 .code16
 
 // 1 创建保护模式的段描述符文表
@@ -15,8 +15,7 @@
 // 3 开启处理器保护模式
 // 4 跳转到内核保护模式
 
-.global _start
-
+.globl _start
 _start:
   # 关闭中断
   cli

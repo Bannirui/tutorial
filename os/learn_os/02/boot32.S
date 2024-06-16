@@ -1,13 +1,13 @@
 // 32位保护模式
 # 数据段
-.data
+.section .data
 
 
 # 代码段
-.text
+.section .text
 .code32
-.global _start
 
+.globl _start
 _start:
   # 内核数据段描述符在全局段描述符表中 因此T1=0
   # 内核数据段位于全局段描述符表的第3项 所以为2 二进制10

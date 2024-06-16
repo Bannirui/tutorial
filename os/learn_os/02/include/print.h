@@ -15,7 +15,7 @@ do                                  \
   }                                 \
   else if(size==8)                  \
   {                                 \
-    __asm__("mov %$0x3f8, %%dx\n\t" \
+    __asm__("mov $0x3f8, %%dx\n\t"  \
             "out %%eax, %%dx\n\t"   \
             "shr $32, %%rax\n\t"    \
             "out %%eax, %%dx\n\t"   \

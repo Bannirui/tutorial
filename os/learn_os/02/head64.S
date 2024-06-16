@@ -2,16 +2,16 @@
 
 #include "include/segment.h"
 
-.text
+.section .text
 .code64
 
-.global _start
-.global gdt
+.globl gdt
 # 0号任务
-.global ret_from_kernel
-.global task0_stack
-.global idle_task_entry
+.globl ret_from_kernel
+.globl task0_stack
+.globl idle_task_entry
 
+.globl _start
 _start:
   lgdt gdtr
   lidt idtr

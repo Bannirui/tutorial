@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.h"
+#include "include/types.h"
 
 #define IO_BITMAP_BYTES (65536/8)
 

@@ -16,9 +16,9 @@ unsigned long do_shm(const char *name);
 unsigned long do_fbmap();
 unsigned long do_get_mode_info(struct mode_info *mode_info);
 
-fn_ptr system_call_table[] = {do_sleep, do_shm, do_fbmap, do_get_mode_info};
+fn_ptr syscall_table[] = {do_sleep, do_shm, do_fbmap, do_get_mode_info};
 
-void syscall_inti()
+void syscall_init()
 {
     uint64_t star_val = (uint64_t)USER32_CS << 48 | (uint64_t)KERNEL_CS << 32;
     uint64_t syscall_entry = (uint64_t)system_call;

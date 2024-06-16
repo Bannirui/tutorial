@@ -1,4 +1,3 @@
-#include "app/libc/type.h"
 #include "app/libc/print.h"
 #include "app/libc/std.h"
 #include "app/libdraw/draw.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.h"
+#include "include/types.h"
 
 #define E820MAX 32
 #define E820_RAM 1

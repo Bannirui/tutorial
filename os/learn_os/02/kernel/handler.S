@@ -1,10 +1,10 @@
 .section .text
 .code64
 
-.global timer_handler
-.global pf_handler
-.global kb_handler
-.global system_call
+.globl timer_handler
+.globl pf_handler
+.globl kb_handler
+.globl system_call
 
 .macro SAVE_CONTEXT save_rax=1
   pushq %rdi
@@ -38,7 +38,7 @@ system_call:
   mov %rsp, tss+20
   mov tss+4, %rsp
   pushq tss+20
-  SAVE_CONTEXT
+  SAVE_CONTEXT 0
 
   call *syscall_table(, %rax, 8)
 

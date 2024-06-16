@@ -3,10 +3,10 @@
 #define SYSCALL_FBMAP 2
 #define SYSCALL_GETMODEINFO 3
 
-.global sleep
-.global shm_open
-.global fbmap
-.global get_mode_info
+.globl sleep
+.globl shm_open
+.globl fbmap
+.globl get_mode_info
 
 sleep:
   mov $SYSCALL_SLEEP, %rax

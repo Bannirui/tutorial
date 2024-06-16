@@ -17,7 +17,7 @@ struct gate_desc
     uint32_t reserved;
 } __attribute__((packed));
 
-struct gate_desc idt_tables[256];
+struct gate_desc idt_table[256];
 
 void init_8254()
 {
@@ -28,7 +28,7 @@ void init_8254()
 
 static void set_gate(unsigned char index, unsigned long addr, char type)
 {
-    struct gate_desc *desc = &idt_tables[index];
+    struct gate_desc *desc = &idt_table[index];
     memset(desc, 0, sizeof(struct gate_desc));
     desc->segment = KERNEL_CS;
     desc->offset_low = (uint16_t)addr;
