@@ -33,9 +33,10 @@ class widget : public QWidget
 	// 信号槽函数 需要实现
 	void do_ageChanged(int age);
 	void do_spinChanged(int val);
+
 	void on_btnBoyInc_clicked();
 	void on_btnGirlInc_clicked();
-	void ob_btnClear_clicked();
+	void on_btnClear_clicked();
 	void on_btnClassInfo_clicked();
  private:
 	Ui::widget* ui;

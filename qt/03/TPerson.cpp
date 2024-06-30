@@ -32,12 +32,12 @@ void TPerson::setAge(qint8 age)
 	{
 		this->m_age = age;
 		// 发送信号
-		this->ageChanged(this->m_age);
+		emit this->ageChanged(this->m_age);
 	}
 }
 void TPerson::incAge()
 {
-	this->m_age++;
+	++this->m_age;
 	// 发送信号
 	emit this->ageChanged(this->m_age);
 }

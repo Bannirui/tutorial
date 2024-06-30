@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(03 CXX)
+project(03 VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_AUTOMOC ON)
@@ -20,12 +20,22 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-# 源码
-aux_source_directory(. PROJ_SRCS)
-add_executable(03 ${PROJ_SRCS})
+# 源码目录
+aux_source_directory(. my_srcs)
+add_executable(${PROJECT_NAME}
+        ${my_srcs}
+)
 
-target_link_libraries(03
-        Qt::Core
-        Qt::Gui
-        Qt::Widgets
+target_link_libraries(${PROJECT_NAME}
+        PRIVATE Qt::Core
+        PRIVATE Qt::Gui
+        PRIVATE Qt::Widgets
+)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+        ${BUNDLE_ID_OPTION}
+        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+        MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+        MACOSX_BUNDLE TRUE
+        WIN32_EXECUTABLE TRUE
 )

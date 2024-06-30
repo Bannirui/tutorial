@@ -27,11 +27,6 @@ widget::widget(QWidget* parent) :
 	// 增加/减少按钮
 	connect(this->ui->spinBoy, SIGNAL(valueChanged(int)), this, SLOT(do_spinChanged(int)));
 	connect(this->ui->spinGirl, SIGNAL(valueChanged(int)), this, SLOT(do_spinChanged(int)));
-	// 增加一岁的按钮
-	connect(this->ui->btnBoyInc, SIGNAL(clicked()), this, SLOT(on_btnBoyInc_clicked()));
-	connect(this->ui->btnGirlInc, SIGNAL(clicked()), this, SLOT(on_btnGirlInc_clicked()));
-	// 清空按钮
-	connect(this->ui->btnClear, SIGNAL(clicked()), this, SLOT(ob_btnClear_clicked()));
 	// 元对象信息
 	connect(this->ui->btnClassInfo, SIGNAL(clicked()), this, SLOT(on_btnClassInfo_clicked()));
 }
@@ -63,13 +58,13 @@ void widget::on_btnGirlInc_clicked()
 {
 	girl->incAge();
 }
-void widget::ob_btnClear_clicked()
+void widget::on_btnClear_clicked()
 {
 	this->ui->plainTextEdit->clear();
 }
 
 void widget::on_btnClassInfo_clicked()
 {
-	const QMetaObject* meta=this->boy->metaObject();
+	const QMetaObject* meta = this->boy->metaObject();
 	this->ui->plainTextEdit->appendPlainText(QString("类名称: %1\n").arg(meta->className()));
 }
