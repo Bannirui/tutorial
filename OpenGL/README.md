@@ -78,4 +78,4 @@ chmod +x ./build.sh
 
 - [X] [03 triangle](demo/03/README.md)
 
-- [ ] [04 rectangle](demo/04/README.md)
+- [X] [04 rectangle](demo/04/README.md)

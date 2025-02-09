@@ -19,7 +19,7 @@ void processInput(GLFWwindow* window)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
-		std::cout << "Ready to escape\n";
+		std::cout << "Ready to escape"<<std::endl;
 		glfwSetWindowShouldClose(window, true);
 	}
 }

@@ -7,6 +7,7 @@
 
 struct GLFWwindow;
 
+/* window大小发生变化时回调函数 */
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 void processInput(GLFWwindow *window);
