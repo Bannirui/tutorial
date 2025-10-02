@@ -1,6 +1,12 @@
 CUDA
 ---
 
+### FUNCTION QUALIFIERS
+
+- __global__ called by host, runs on device
+- __device__ called by device, runs on device
+- __host__ normal host function
+
 ### API
 
 - `cudaMalloc(void** devPtr, size_t sizeInBytes);`
