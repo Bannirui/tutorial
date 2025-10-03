@@ -33,3 +33,14 @@ Each of these are dim3 structures and can be read in the kernel to assign partic
 - blockIdx Block index within the grid
 - blockDim Block dimensions in threads
 - gridDim Grid dimensions in blocks
+
+### MEMORY
+
+- Global All running threads can read and write global memory and so can the CPU. The functions cudaMalloc, cudaFree, cudaMemcpy and cudaMemset all deal with global memory
+- Constant
+- Texture
+- Block
+  - Shared memory
+  - Thread
+    - Local
+    - Registers
