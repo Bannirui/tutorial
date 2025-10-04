@@ -44,3 +44,32 @@ Each of these are dim3 structures and can be read in the kernel to assign partic
   - Thread
     - Local
     - Registers
+
+#### shared memory
+
+1 static
+
+use __shared__ qualifier to say the following variable is declared in shared memory, the amount must be specified at compiler time when using this method
+
+```cuda
+__global__ void SomeKernel() {
+  __shared__ int i;
+  __shared__ float f_array[100];
+}
+```
+
+2 dynamic
+
+allocate a variable(dynamic) amount of shared memory using a third parameter in the kernel launch configuration from the host, and have to specify that it's extern in the kernel
+
+```cuda
+__global__ void SomeKernel() {
+  extern __shared__ char sharedBuffer[];
+}
+```
+
+```cuda
+SomeKernel<<<10, 23, 19>>>();
+```
+
+the brackets are empty in the code
