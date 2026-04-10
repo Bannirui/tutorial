@@ -1,3 +1,3 @@
 #!/bin/sh
 
-cd out ; ./my_cuda
+cd build ; ./my_cuda

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-cd out ; make
+cmake --build build -j8
