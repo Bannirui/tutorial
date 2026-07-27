@@ -45,3 +45,19 @@ in place操作 就地操作 不允许使用临时变量 也称为原位操作 ad
 - 满足右对齐性质
   - 其中有个1
   - 两个相等
+
+- [Tensor的比较运算](./tensor_cmp.py)
+  - torch.eq(...)
+  - torch.equal(...)
+  - torch.ge(...)
+  - torch.gt(...)
+  - torch.le(...)
+  - torch.lt(...)
+  - torch.ne(...)
+- [Tensor的高阶排序](./tensor_sort.py)
+  - torch.sort(...) 指定排序规则
+  - torch.topk(...) 沿着指定维度返回最大K个数值及其索引值
+  - torch.kthvalue(...) 沿着指定维度返回K个最小值及其索引值
+- torch.isfinite(...) 判断有界
+- torch.isinf(...) 判断无界
+- torch.isnan(...) 判断空值
