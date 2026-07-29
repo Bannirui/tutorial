@@ -8,10 +8,12 @@ def greet(name:str,intensity:float)->str:
 
 # 界面配置
 app=gr.Interface(
+        title="Greet Demo",
+        description="a demo built by gradio",
+        api_name="predict",
         fn=greet,
         inputs=["text","slider"],
-        outputs=["text"],
-        api_name="predict"
+        outputs=["text"]
     )
 
 if __name__ == '__main__':
