@@ -61,3 +61,11 @@ in place操作 就地操作 不允许使用临时变量 也称为原位操作 ad
 - torch.isfinite(...) 判断有界
 - torch.isinf(...) 判断无界
 - torch.isnan(...) 判断空值
+- 三角函数
+- 统计相关函数
+  - torch.std 标准差
+  - torch.var 方差
+  - torch.median 中间值
+  - torch.mode 众数
+  - torch.histc 直方图
+  - torch.bincount 每个值的频数
